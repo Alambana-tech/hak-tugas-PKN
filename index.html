@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hak-hak Berdasarkan UUD 1945</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f0f0f 0%, #1a1a1a 50%, #0f0f0f 100%);
+            overflow: hidden;
+            color: #e8e8e8;
+        }
+
+        .slideshow-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+        }
+
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+            animation: slideIn 0.5s ease-in-out;
+        }
+
+        .slide.active {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .slide h1 {
+            font-size: 2.5em;
+            color: #ffffff;
+            margin-bottom: 30px;
+            text-align: center;
+            background: linear-gradient(45deg, #c9aa71, #f4e4bc, #c9aa71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 30px rgba(201, 170, 113, 0.3);
+        }
+
+        .slide h2 {
+            font-size: 2em;
+            color: #f4e4bc;
+            margin-bottom: 25px;
+            text-align: center;
+            border-bottom: 3px solid #c9aa71;
+            padding-bottom: 10px;
+            text-shadow: 0 0 20px rgba(244, 228, 188, 0.3);
+        }
+
+        .slide h3 {
+            font-size: 1.5em;
+            color: #c9aa71;
+            margin: 20px 0 10px 0;
+            border-left: 5px solid #c9aa71;
+            padding-left: 15px;
+        }
+
+        .hak-item {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 15px;
+            border-left: 5px solid #c9aa71;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .hak-item:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(201, 170, 113, 0.3);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(201, 170, 113, 0.1);
+        }
+
+        .pasal {
+            font-weight: bold;
+            color: #f4e4bc;
+            font-size: 1.1em;
+            text-shadow: 0 0 10px rgba(244, 228, 188, 0.3);
+        }
+
+        .isi-pasal {
+            margin-top: 8px;
+            font-style: italic;
+            color: #d4d4d4;
+            line-height: 1.6;
+        }
+
+        .penjelasan {
+            margin-top: 10px;
+            color: #b8b8b8;
+            line-height: 1.5;
+        }
+
+        .navigation {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 12px 24px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            color: #c9aa71;
+            border: 1px solid rgba(201, 170, 113, 0.3);
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            background: rgba(201, 170, 113, 0.2);
+            border: 1px solid rgba(201, 170, 113, 0.5);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4), 0 0 20px rgba(201, 170, 113, 0.2);
+        }
+
+        .nav-btn:disabled {
+            background: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .slide-counter {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            color: #c9aa71;
+            font-weight: bold;
+        }
+
+        .title-slide {
+            text-align: center;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
+            color: #ffffff;
+        }
+
+        .title-slide h1 {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+            color: #ffffff;
+            background: linear-gradient(45deg, #c9aa71, #f4e4bc, #c9aa71);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-shadow: 0 0 40px rgba(201, 170, 113, 0.4);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            margin-bottom: 30px;
+            opacity: 0.9;
+        }
+
+        .garuda-icon {
+            font-size: 4em;
+            margin: 30px 0;
+            color: #c9aa71;
+            text-shadow: 0 0 30px rgba(201, 170, 113, 0.5);
+        }
+
+        .content-area {
+            max-width: 1000px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+            
+            .slide h1 {
+                font-size: 2em;
+            }
+            
+            .slide h2 {
+                font-size: 1.5em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow-container">
+        <div class="slide-counter">
+            <span id="currentSlide">1</span> / <span id="totalSlides">5</span>
+        </div>
+
+        <!-- Slide 1: Title -->
+        <div class="slide active title-slide">
+            <div class="content-area">
+                <div class="garuda-icon">🦅</div>
+                <h1>HAK-HAK BERDASARKAN UUD 1945</h1>
+                <div class="subtitle">Hak Sebagai Anak, Pelajar, dan Anggota Masyarakat</div>
+                <div style="margin-top: 50px; font-size: 1.1em; opacity: 0.8;">
+                    Undang-Undang Dasar Negara Republik Indonesia Tahun 1945
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 2: Hak Sebagai Anak -->
+        <div class="slide">
+            <div class="content-area">
+                <h2>🧒 HAK SEBAGAI ANAK</h2>
+                
+                <div class="hak-item">
+                    <div class="pasal">Pasal 28B ayat (2)</div>
+                    <div class="isi-pasal">"Setiap anak berhak atas kelangsungan hidup, tumbuh, dan berkembang serta berhak atas perlindungan dari kekerasan dan diskriminasi."</div>
+                    <div class="penjelasan">Menjamin hak dasar anak untuk hidup, berkembang, dan dilindungi dari segala bentuk kekerasan.</div>
+                </div>
+
+                <div class="hak-item">
+                    <div class="pasal">Pasal 28C ayat (1)</div>
+                    <div class="isi-pasal">"Setiap orang berhak mengembangkan diri melalui pemenuhan kebutuhan dasarnya, berhak mendapat pendidikan dan memperoleh manfaat dari ilmu pengetahuan dan teknologi, seni dan budaya, demi meningkatkan kualitas hidupnya dan demi kesejahteraan umat manusia."</div>
+                    <div class="penjelasan">Anak berhak mendapat pendidikan dan mengembangkan potensi diri.</div>
+                </div>
+
+                <div class="hak-item">
+                    <div class="pasal">Pasal 28H ayat (1)</div>
+                    <div class="isi-pasal">"Setiap orang berhak hidup sejahtera lahir dan batin, bertempat tinggal, dan mendapatkan lingkungan hidup yang baik dan sehat serta berhak memperoleh pelayanan kesehatan."</div>
+                    <div class="penjelasan">Anak berhak atas kesejahteraan, tempat tinggal layak, dan pelayanan kesehatan.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 3: Hak Sebagai Pelajar -->
+        <div class="slide">
+            <div class="content-area">
+                <h2>📚 HAK SEBAGAI PELAJAR</h2>
+                
+                <div class="hak-item">
+                    <div class="pasal">Pasal 31 ayat (1)</div>
+                    <div class="isi-pasal">"Setiap warga negara berhak mendapat pendidikan."</div>
+                    <div class="penjelasan">Hak fundamental setiap warga negara untuk memperoleh pendidikan tanpa diskriminasi.</div>
+                </div>
+
+                <div class="hak-item">
+                    <div class="pasal">Pasal 31 ayat (2)</div>
+                    <div class="isi-pasal">"Setiap warga negara wajib mengikuti pendidikan dasar dan pemerintah wajib membiayainya."</div>
+                    <div class="penjelasan">Negara menjamin pendidikan dasar gratis untuk semua warga negara.</div>
+                </div>
+
+                <div class="hak-item">
+                    <div class="pasal">Pasal 28C ayat (1)</div>
+                    <div class="isi-pasal">"Setiap orang berhak mengembangkan diri melalui pemenuhan kebutuhan dasarnya, berhak mendapat pendidikan dan memperoleh manfaat dari ilmu pengetahuan dan teknologi..."</div>
+                    <div class="penjelasan">Pelajar berhak mengakses ilmu pengetahuan, teknologi, seni, dan budaya.</div>
+                </div>
+
+                <div class="hak-item">
+                    <div class="pasal">Pasal 28E ayat (3)</div>
+                    <div class="isi-pasal">"Setiap orang berhak atas kebebasan berserikat, berkumpul, dan mengeluarkan pendapat."</div>
+                    <div class="penjelasan">Pelajar berhak berserikat dalam organisasi pendidikan dan menyampaikan pendapat.</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 4: Hak Sebagai Anggota Masyarakat -->
+        <div class="slide">
+            <div class="content-area">
+                <h2>👥 HAK SEBAGAI ANGGOTA MASYARAKAT</h2>
+                
+                <div class="two-column">
+                    <div>
+                        <div class="hak-item">
+                            <div class="pasal">Pasal 27 ayat (1)</div>
+                            <div class="isi-pasal">"Segala warga negara bersamaan kedudukannya di dalam hukum dan pemerintahan..."</div>
+                            <div class="penjelasan">Kesetaraan di depan hukum.</div>
+                        </div>
+
+                        <div class="hak-item">
+                            <div class="pasal">Pasal 28D ayat (1)</div>
+                            <div class="isi-pasal">"Setiap orang berhak atas pengakuan, jaminan, perlindungan, dan kepastian hukum yang adil..."</div>
+                            <div class="penjelasan">Perlindungan dan kepastian hukum.</div>
+                        </div>
+
+                        <div class="hak-item">
+                            <div class="pasal">Pasal 28E ayat (1)</div>
+                            <div class="isi-pasal">"Setiap orang bebas memeluk agama dan beribadat menurut agamanya..."</div>
+                            <div class="penjelasan">Kebebasan beragama dan beribadah.</div>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="hak-item">
+                            <div class="pasal">Pasal 28F</div>
+                            <div class="isi-pasal">"Setiap orang berhak untuk berkomunikasi dan memperoleh informasi..."</div>
+                            <div class="penjelasan">Hak memperoleh dan menyampaikan informasi.</div>
+                        </div>
+
+                        <div class="hak-item">
+                            <div class="pasal">Pasal 28G ayat (1)</div>
+                            <div class="isi-pasal">"Setiap orang berhak atas perlindungan diri pribadi, keluarga, kehormatan, martabat..."</div>
+                            <div class="penjelasan">Perlindungan privasi dan martabat.</div>
+                        </div>
+
+                        <div class="hak-item">
+                            <div class="pasal">Pasal 28I ayat (2)</div>
+                            <div class="isi-pasal">"Setiap orang berhak bebas dari perlakuan yang bersifat diskriminatif..."</div>
+                            <div class="penjelasan">Bebas dari diskriminasi.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slide 5: Kesimpulan -->
+        <div class="slide">
+            <div class="content-area">
+                <h2>📝 KESIMPULAN</h2>
+                
+                <div style="text-align: center; margin: 30px 0;">
+                    <div class="garuda-icon" style="font-size: 3em; color: #c9aa71; text-shadow: 0 0 30px rgba(201, 170, 113, 0.5);">⚖️</div>
+                </div>
+
+                <div class="hak-item" style="background: rgba(201, 170, 113, 0.1); border: 1px solid rgba(201, 170, 113, 0.2);">
+                    <h3 style="color: #f4e4bc; margin-bottom: 15px; border: none; padding: 0;">UUD 1945 Menjamin Hak Fundamental:</h3>
+                    <div style="font-size: 1.1em; line-height: 1.8; color: #d4d4d4;">
+                        <p><strong style="color: #c9aa71;">✓ Sebagai Anak:</strong> Hak hidup, berkembang, pendidikan, dan perlindungan</p>
+                        <p><strong style="color: #c9aa71;">✓ Sebagai Pelajar:</strong> Hak pendidikan, ilmu pengetahuan, dan berserikat</p>
+                        <p><strong style="color: #c9aa71;">✓ Sebagai Anggota Masyarakat:</strong> Kesetaraan, perlindungan hukum, kebebasan beragama, informasi, dan bebas diskriminasi</p>
+                    </div>
+                </div>
+
+                <div style="text-align: center; margin-top: 40px; padding: 20px; background: rgba(201, 170, 113, 0.15); backdrop-filter: blur(10px); border: 1px solid rgba(201, 170, 113, 0.3); border-radius: 15px; color: #f4e4bc;">
+                    <h3 style="color: #f4e4bc; border: none; padding: 0; text-shadow: 0 0 20px rgba(244, 228, 188, 0.3);">"Hak Asasi Manusia adalah Anugerah Tuhan yang Wajib Dihormati dan Dilindungi"</h3>
+                    <p style="margin-top: 10px; font-style: italic; color: #c9aa71;">- UUD NRI Tahun 1945 -</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="navigation">
+            <button class="nav-btn" id="prevBtn" onclick="changeSlide(-1)">‹ Sebelumnya</button>
+            <button class="nav-btn" id="nextBtn" onclick="changeSlide(1)">Selanjutnya ›</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 1;
+        const totalSlides = 5;
+
+        function showSlide(n) {
+            const slides = document.querySelectorAll('.slide');
+            
+            if (n > totalSlides) currentSlideIndex = 1;
+            if (n < 1) currentSlideIndex = totalSlides;
+            
+            slides.forEach(slide => slide.classList.remove('active'));
+            slides[currentSlideIndex - 1].classList.add('active');
+            
+            document.getElementById('currentSlide').textContent = currentSlideIndex;
+            document.getElementById('totalSlides').textContent = totalSlides;
+            
+            // Update navigation buttons
+            document.getElementById('prevBtn').disabled = currentSlideIndex === 1;
+            document.getElementById('nextBtn').disabled = currentSlideIndex === totalSlides;
+        }
+
+        function changeSlide(n) {
+            currentSlideIndex += n;
+            showSlide(currentSlideIndex);
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowLeft') changeSlide(-1);
+            if (e.key === 'ArrowRight') changeSlide(1);
+        });
+
+        // Initialize
+        showSlide(currentSlideIndex);
+
+        // Auto-advance slides every 30 seconds (optional)
+        // setInterval(() => {
+        //     if (currentSlideIndex < totalSlides) {
+        //         changeSlide(1);
+        //     }
+        // }, 30000);
+    </script>
+</body>
+</html>
